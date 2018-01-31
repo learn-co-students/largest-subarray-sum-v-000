@@ -42,3 +42,9 @@ function greedySubarraySum(array){
 // O(n)
 // THE EFFICIENCY!!!
 // edge case that would break this would be if all sub arrays sums are below zero
+
+// How does this work?
+// It loops through the whole array once.
+// The algorithm adds the current number to the accumulated sum
+// If the sum dips below zero, algorithm resets the sum
+// The sum returned at the end is the largest possible sum

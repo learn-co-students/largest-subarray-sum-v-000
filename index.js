@@ -1,25 +1,45 @@
 function largestSubarraySum(arr) {
+  debugger;
   let sum = 0
   if (arr.filter(val => val >= 0) == arr) {
     arr.map(val => sum += val)
   } else {
-    firstPos = arr.find(val => val > 0);
-    //dont include anything before first positive
-    // dont include anything after the last positive
-    lastPos = arr.reverse().find(val => val > 0)
-    arr = arr.slice(indexOf(firstPos), indexOf(lastPos));
-    while (arr.find(val => val >= 0)) {
-      let largestSeq = largestPosSequence(arr)
-      let newArr = arr.filter(val => !largestSeq.includes(val)))
-      let newlargestSeq = largestPosSequence(newArr)
-      let negsBetween = arr.slice(newlargestSeq.slice(-1)[0], largestSeq.slice(-1)[0])
-      //if sum of newlargestSeq > sum of negsBetween, sum += sum of newlargestSeq + sum of negsBetween
+      let negsBetween;
+      let firstPos = arr.find(val => val > 0);
+      let firstPosIndex = arr.indexOf(firstPos);
+      //dont include anything before first positive
+      // dont include anything after the last positive
+      let lastPos = arr.reverse().find(val => val > 0);
+      arr.reverse()
+      let lastPosIndex = arr.lastIndexOf(lastPos);
+      arr = arr.slice(firstPosIndex, lastPosIndex + 1);
+      let largestSeq = largestPosSequence(arr);
+      let largestSeqFirstIndex = arr.indexOf(largestSeq.slice(-1)[0]);
+      largestSeq.map(val => sum += val)
+
+      while ((arr.find(val => val >= 0) != undefined)) {
+        let newArr = arr.slice(0, arr.indexOf(largestSeq.slice(0)[0])).concat(arr.slice(arr.indexOf(largestSeq.slice(-1)[0])).slice(1))
+        let newLargestSeq = largestPosSequence(newArr)
+        if (arr.indexOf(newLargestSeq.slice(-1)[0]) < largestSeqFirstIndex) {
+          negsBetween = arr.slice(arr.indexOf(newLargestSeq.slice(-1)[0]) + 1, arr.indexOf(largestSeq.slice(0)[0]))
+        } else {
+          negsBetween = arr.slice(arr.indexOf(largestSeq.slice(-1)[0]) + 1, arr.indexOf(newLargestSeq.slice(0)[0]))
+        }
+        let newLargestSeqSum = 0;
+        newLargestSeq.map(val => newLargestSeqSum += val)
+        let negsBetweenSum = 0;
+        negsBetween.map(val => negsBetweenSum += val)
+        if (newLargestSeqSum > Math.abs(negsBetweenSum)) {
+          sum += newLargestSeqSum + negsBetweenSum
+        }
+        arr = arr.slice(0, arr.indexOf(newLargestSeq.slice(0)[0])).concat(arr.slice(arr.indexOf(largestSeq.slice(-1)[0])).slice(1))
+    }
   }
   return sum
 }
 
-function largestPosSequence(arr) { 
-  debugger;
+
+function largestPosSequence(arr) {
   let firstNeg = arr.find(val => val < 0)
   let firstNegIndex = arr.indexOf(firstNeg)
   let longestPosSeq = arr.slice(0, firstNegIndex)

@@ -13,10 +13,14 @@ const largestSubarraySum = array => {
   for (let i = 0; i < array.length; i++) {
     let leftArray = array.slice(0, i + 1);
     let rightArray = array.slice(i + 1);
-    if (sumArray(leftArray) > sumArray(rightArray) && sumArray(leftArray) > sum) {
-      sum = sumArray(leftArray);
-    } else if (sumArray(rightArray) > sumArray(leftArray) && sumArray(rightArray) > sum) {
-      sum = sumArray(rightArray);
+    if (array[i] > 0 && i > 0) {
+      if (sumArray(leftArray) > sum) {
+        sum = sumArray(leftArray);
+      }
+    } else if (array[i] < 0 && i > 0) {
+      if (sumArray(rightArray) > sum) {
+        sum = sumArray(rightArray);
+      }
     }
   }
   return sum;

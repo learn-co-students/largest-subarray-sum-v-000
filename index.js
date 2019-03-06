@@ -5,5 +5,7 @@ function largestSubarraySum(array) {
         ans = Math.max(0, ans + array[i]);
         sum = Math.max(sum, ans);
     }
-    return sum;
+    return  array.sort((a,b)=> a-b)[array.length -1] < 0 ?
+                array.sort((a,b)=> a-b)[array.length -1] :
+                sum;
 };

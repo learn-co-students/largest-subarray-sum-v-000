@@ -1,6 +1,16 @@
 function largestSubarraySum(arr){
+  if (arr.length === 1){
+    if (!arr['max']){
+      arr['max']=arr[0]
+    }
+    else if (arr[0] > arr['max']){
+      arr['max'] = arr[0]
+    }
+  }
   if (arr.length > 1){
-    let s = arr.pop() + arr.pop()
+    let a = arr.pop() || 0
+    let b = arr.pop() || 0
+    let s = a + b
     console.log(s)
     if (s > 0 ){
       arr.push(s)

@@ -5,7 +5,7 @@ describe('#largestSubarraySum', function() {
 	})
 
 	it('big sample', function(){
-		let array = [-100, 1, -1, 5, 3, -7, 4, 5, 6, -100, 6, 4]
-		expect(largestSubarraySum(array)).toEqual(16)
+		let array = [17, -100, 1, -1, 5, 3, -7, 4, 5, 6, -100, 6, 4]
+		expect(largestSubarraySum(array)).toEqual(17)
 	})
 });

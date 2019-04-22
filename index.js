@@ -8,19 +8,20 @@ function largestSubarraySum(arr){
     }
   }
   if (arr.length > 1){
+    if (!arr['max']){
+      arr['max']= arr[arr.length-1]
+    }
     let a = arr.pop() || 0
     let b = arr.pop() || 0
     let s = a + b
     console.log(s)
     if (s > 0 ){
       arr.push(s)
-      console.log(arr)
-      if (!arr['max']){
-        arr['max']=s
-      }
-      else if (s > arr['max']){
+
+      if (s > arr['max']){
         arr['max'] = s
       }
+      console.log(arr)
       return largestSubarraySum(arr)
     }
     else if (s<0){

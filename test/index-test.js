@@ -12,6 +12,10 @@ describe('#largestSubarraySum', function() {
     expect(largestSubarraySum(array)).toEqual(11);
   });
   it('largest subarray sum', function() {
+    let array = [-1, 2, 3, -9, 2];
+    expect(largestSubarraySum(array)).toEqual(5);
+  });
+  it('largest subarray sum', function() {
     let array = [-2, -1, 1, 2];
     expect(largestSubarraySum(array)).toEqual(3);
   });

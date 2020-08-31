@@ -46,3 +46,19 @@ describe('#largestSubarraySum', function() {
     expect(largestSubarraySum(array)).toEqual(1000)
   });
 });
+
+// maybeMax
+// 1
+// 0
+// 5
+// 8
+// 1
+// 5
+// 10
+//
+// max
+// 1
+// 1
+// 5
+// 8
+// 10
